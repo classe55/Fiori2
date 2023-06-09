@@ -1,0 +1,46 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table">
+    <Dialog id="Dialog" title="Search Airline Code">
+        <content>
+            <Input id = "idCarrid"  value="{/Carrid}"/>
+            <t:Table
+                rows="{/CarrierSet}"
+                selectionMode="Single"
+                visibleRowCount="7"
+                paste="onPaste"
+                ariaLabelledBy="title">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title2" text="SCARR Table" />
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column>
+                        <Label text="CARRID" />
+                        <t:template>
+                            <Text text="{Carrid}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="CARRNAME" />
+                        <t:template>
+                            <Text text="{Carrname}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="CURRCODE" />
+                        <t:template>
+                            <Text text="{Currcode}" wrapping="false" />
+                        </t:template>
+                    </t:Column>                   
+                </t:columns>
+            </t:Table>
+            </content>
+    
+        <endButton>
+            <Button text="close" press="onClose" type="Emphasized"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

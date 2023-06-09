@@ -1,0 +1,17 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout">
+    <Dialog id="Dialog" title="재상신">
+        <l:VerticalLayout class="sapUiContentPadding" width="100%">
+            <Text text="이전 요청 내용에서 변경 내용을 업데이트해주세요."/>
+            <l:content>
+                <!--None -> Success로 -->
+                <TextArea id="DenyText" valueState="None" placeholder="상신 내용을 입력하세요." width="100%" />
+            </l:content>
+        </l:VerticalLayout>
+        <endButton>
+            <Button text="등록" press="onClose" type="Emphasized"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

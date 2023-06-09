@@ -1,0 +1,80 @@
+<mvc:View controllerName="zstudy01.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:c="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <mvc:XMLView viewName="zstudy01.view.search" />
+        </content>
+        <content>
+
+            <t:Table
+                id = "idConnectionTable"
+                rows="{/ConnectionSet}"
+                selectionMode="MultiToggle"
+                visibleRowCount="20"
+                paste="onPaste"
+                ariaLabelledBy="title">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title" text="Connection Set" />
+                        <ToolbarSpacer />
+                        <Button text="Delete" type="Emphasized"/>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column  >
+                        <Label text="Carrid" />
+                        <t:template>
+                            <Text text="{Carrid}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column  >
+                        <Label text="Connid" />
+                        <t:template>
+                            <Text text="{Connid}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column  >
+                        <Label text="Countryfr" />
+                        <t:template>
+                            <Text text="{Countryfr}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column  >
+                        <Label text="Cityfrom" />
+                        <t:template>
+                            <Text text="{Cityfrom}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column  >
+                        <Label text="Airpfrom" />
+                        <t:template>
+                            <Text text="{Airpfrom}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column  >
+                        <Label text="Countryto" />
+                        <t:template>
+                            <Text text="{Countryto}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column  >
+                        <Label text="Cityto" />
+                        <t:template>
+                            <Text text="{Cityto}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column  >
+                        <Label text="Airpto" />
+                        <t:template>
+                            <Text text="{Airpto}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+
+                </t:columns>
+            </t:Table>
+        </content>
+    </Page>
+</mvc:View>

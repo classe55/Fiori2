@@ -1,0 +1,225 @@
+<mvc:View controllerName="zrepair.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:m="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns="sap.uxap"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:comp = "sap.ui.comp"
+    xmlns:layout = "sap.ui.layout"
+     xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.f.semantic">
+    <m:Page> 
+    <m:ObjectHeader 
+        responsive ="true" fullScreenOptimized="true" title="EReON 수리 요청"      
+        class="sapUiResponsivePadding--header" backgroundDesign="Translucent" >        
+       
+        <m:ObjectAttribute id="idDept" title="부서" />
+        <m:ObjectAttribute id="idName" title="담당자" />
+                         
+        <m:headerContainer>        
+            <m:IconTabBar class="sapUiResponsiveContentPadding">
+                <m:items>
+                    <m:IconTabFilter id="idIconSelf" key="" icon="sap-icon://cancel-maintenance" iconColor="Default"
+                                    text="자체수리">
+                        <m:Table
+                                id="idSelfTable"
+                                inset="false"
+                                items="{
+                                    path : '/InspectionSet',
+                                    filters  :[{
+                                        path : 'Repairtype',
+                                        operator  : 'EQ',
+                                        value1  : 'E'}]
+                                }"
+                                selectionChange="onSelectionChange"
+                                >
+                                <m:headerToolbar>
+                                    <m:OverflowToolbar>
+                                        <m:content>
+                                            <m:Title text="자체 수리 대상 차량" />
+                                            <m:ToolbarSpacer />
+                                            <m:SearchField  width="10%"/>                                            
+                                            <m:OverflowToolbarButton tooltip="Sort"
+                                                press="onSort"
+                                                text="Sort"
+                                                icon="sap-icon://sort" />
+
+                                            <m:Button icon="sap-icon://refresh" press="onRefresh" tooltip="새로고침"/>
+                                        </m:content>
+                                    </m:OverflowToolbar>                                    
+                                </m:headerToolbar>
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text="점검ID" />
+                                    </m:Column>
+                                    <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                        <m:Text text="차량ID" />
+                                    </m:Column>
+                                    <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                        <m:Text text="담당자ID" />
+                                    </m:Column>
+                                    <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                        <m:Text text="수리유형" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="점검일자" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="점검내용" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="자재 등록" />
+                                    </m:Column>
+                                </m:columns>
+
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{Inspectid}" />
+                                            <m:Text text="{Carid}" />
+                                            <m:Text text="{Employeeid}" />
+                                            <m:Text text="{= (${Repairtype}) === 'E' ? '자체 수리': false}" />
+                                            
+                                            <m:Text
+                                                text=" {
+                                                    path : 'Insdate',
+                                                    formatter : '.formatter.dateTime'}" />
+                                            <m:Text text="{Insdesc}" />
+                                            <m:Button text="등록" type="Emphasized" press="onPress" />
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                    </m:IconTabFilter>
+                    <m:IconTabFilter id="idReqSelf" key="" icon="sap-icon://insurance-car" text="업체수리">
+                        <m:content>
+                        <m:Table
+                                id="idReqTable"
+                                inset="false"
+                                items="{
+                                    path : '/InspectionSet',
+                                    filters  :[{
+                                        path : 'Repairtype',
+                                        operator  : 'EQ',
+                                        value1  : 'P'}]
+                                }"
+                                mode="MultiSelect">
+                                <m:headerToolbar>
+                                    <m:OverflowToolbar>
+                                        <m:Title text="업체 수리 대상 차량" />
+                                        <m:ToolbarSpacer />
+                                        <!-- <m:DateRangeSelection width="25%" displayFormat="yyyy년 M월 d일" /> -->
+                                        <!-- <m:OverflowToolbarButton tooltip="상신"
+                                            text="상신"
+                                            icon="sap-icon://request" 
+                                            id="idReqButton" 
+                                            press="onReqButton2"/> -->
+                                        <m:Button icon="sap-icon://refresh" press="onRefresh" tooltip="새로고침"/>
+                                    </m:OverflowToolbar>
+                                </m:headerToolbar>
+
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text="점검ID" />
+                                    </m:Column>
+                                    <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                        <m:Text text="차량ID" />
+                                    </m:Column>
+                                    <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                        <m:Text text="담당자ID" />
+                                    </m:Column>
+                                    <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                        <m:Text text="수리유형" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="점검일자" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="점검내용" />
+                                    </m:Column>
+                                </m:columns>
+
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{Inspectid}" />
+                                            <m:Text text="{Carid}" />
+                                            <m:Text text="{Employeeid}" />
+                                            <m:Text text="{= (${Repairtype}) === 'P' ? '업체 수리': false}" />
+                                            <m:Text
+                                                text=" {
+                                                    path : 'Insdate',
+                                                    formatter : '.formatter.dateTime'}" />
+                                            <m:Text text="{Insdesc}" />
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                            <m:Toolbar class="sapMTBFooter sapMTB-Transparent" >
+                                <m:ToolbarSpacer />
+                                <m:Button text="상신" press="onReqButton" type="Emphasized"/>
+                            </m:Toolbar>
+                        </m:content>                        
+                        
+                                                     
+                    </m:IconTabFilter>
+                    <m:IconTabFilter id="idIconDeny" key="" icon="sap-icon://reset" iconColor="Negative" text="요청 반려">
+                        <m:Table
+                                id="idDenyTable"
+                                class="sapFDynamicPageAlignContent"
+                                inset="false"
+                                items="{/Repair_DenySet}"
+                                itemPress="onItemPress"
+                                mode="MultiSelect">
+                                <m:headerToolbar>
+                                    <m:OverflowToolbar>
+                                        <m:Title text="수리 요청 반려" />
+                                        <m:ToolbarSpacer />
+                                        <!-- <m:DateRangeSelection width="25%" displayFormat="yyyy년 M월 d일" /> -->
+                                        <m:Button icon="sap-icon://refresh" press="onRefresh" tooltip="새로고침"/>
+                                    </m:OverflowToolbar>
+                                </m:headerToolbar>
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text="점검ID" />
+                                    </m:Column>
+                                    <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                        <m:Text text="차량ID" />
+                                    </m:Column>
+                                    <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                        <m:Text text="담당자ID" />
+                                    </m:Column>
+                                    <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                        <m:Text text="수리유형" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="요청 일자" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="요청 내용" />
+                                    </m:Column>
+                                </m:columns>
+
+                                <m:items>
+                                    <m:ColumnListItem type="Navigation" press=".onListItemPress">
+                                        <m:cells>
+                                            <m:Text text="{Inspectid}" />
+                                            <m:Text text="{Carid}" />
+                                            <m:Text text="{Employeeid}" />
+                                            <m:Text text="업체 수리" />
+                                            <m:Text
+                                                text=" {
+                                                    path : 'Repdate',
+                                                    formatter : '.formatter.dateTime'}" />
+                                            <m:Text text="{Repdesc}" />
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>                           
+                    </m:IconTabFilter>
+                </m:items>
+            </m:IconTabBar>
+        </m:headerContainer>                
+    </m:ObjectHeader>
+    </m:Page>
+</mvc:View>

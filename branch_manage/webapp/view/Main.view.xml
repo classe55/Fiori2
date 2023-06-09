@@ -1,0 +1,204 @@
+<mvc:View controllerName="branchmanage.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core" xmlns:vbm="sap.ui.vbm" xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f" xmlns:vk="sap.ui.vk"
+    height="100%"
+    width="100%">
+    <Page>
+        <content>
+            <f:DynamicPage id="dynamicPageId" preserveHeaderStateOnScroll="true"
+                headerExpanded="{/headerExpanded}" fitContent="true"> 
+                <f:title>
+                    <f:DynamicPageTitle >
+                        <f:heading>
+                            <Title text="EReON 지점별 차량관리" class="sapUiSmallMargin" />
+                        </f:heading>
+                        <!-- <f:content>
+                    <OverflowToolbar>
+                        <GenericTag 
+                            id="nowBranch"
+                            text="SR"
+                            class="sapUiTinyMargin"
+                            status="Information"
+                            press="onGenericTagPress"
+                            design="StatusIconHidden">
+                        </GenericTag>
+                    </OverflowToolbar>
+                </f:content> -->
+                    </f:DynamicPageTitle>
+                </f:title>
+                <f:header>
+                    <f:DynamicPageHeader pinnable="true">
+                        <l:HorizontalLayout allowWrapping="true">
+                            <HBox>
+                                <GenericTile
+                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                    header="전체 보유차량" frameType="OneByHalf" press="onFirstPress">
+                                    <TileContent>
+                                        <NumericContent id="idTile0" scale="대"
+                                            valueColor="Good" class="sapUiTinyMargin"
+                                            withMargin="true" />
+                                    </TileContent>
+                                </GenericTile>
+
+                                <GenericTile
+                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                    header="대여 가능" frameType="OneByHalf" press="onTilePress">
+                                    <TileContent>
+                                        <NumericContent id="idTile1" value="65.5" scale="대"
+                                            valueColor="Good" class="sapUiTinyMargin"
+                                            withMargin="true" />
+                                    </TileContent>
+                                </GenericTile>
+                                <GenericTile
+                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                    header="대여 중" frameType="OneByHalf" press="onTilePress">
+                                    <TileContent>
+                                        <NumericContent id="idTile2" value="65.5" scale="대"
+                                            valueColor="Good" class="sapUiTinyMargin"
+                                            withMargin="true" />
+                                    </TileContent>
+                                </GenericTile>
+                                <GenericTile
+                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                    header="점검필요" frameType="OneByHalf" press="onTilePress">
+                                    <TileContent>
+                                        <NumericContent id="idTile3" value="65.5" scale="대"
+                                            valueColor="Neutral" class="sapUiTinyMargin"
+                                            withMargin="true" />
+                                    </TileContent>
+                                </GenericTile>
+                                <GenericTile
+                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                    header="수리필요" frameType="OneByHalf" press="onTilePress">
+                                    <TileContent>
+                                        <NumericContent id="idTile4" value="65.5" scale="대"
+                                            valueColor="Neutral" class="sapUiTinyMargin"
+                                            withMargin="true" />
+                                    </TileContent>
+                                </GenericTile>
+                                <GenericTile
+                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                    header="수리 중" frameType="OneByHalf" press="onTilePress">
+                                    <TileContent>
+                                        <NumericContent id="idTile5" value="65.5" scale="대"
+                                            valueColor="Critical" class="sapUiTinyMargin"
+                                            withMargin="true" />
+                                    </TileContent>
+                                </GenericTile>
+
+                                <GenericTile
+                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                    header="신규" frameType="OneByHalf" press="onTilePress">
+                                    <TileContent>
+                                        <NumericContent id="idTile6" value="65.5" scale="대"
+                                            valueColor="Critical" class="sapUiTinyMargin"
+                                            withMargin="true" />
+                                    </TileContent>
+                                </GenericTile>
+                            </HBox>
+                        </l:HorizontalLayout>
+                    </f:DynamicPageHeader>
+                </f:header>
+                <f:content>
+                    <l:FixFlex class="fixFlexFixedSize" minFlexSize="400">
+                        <l:fixContent>
+                            <Panel expandable="true" expanded="{= !${device>/system/phone} }"
+                                headerText="Description">
+                                <Text text="Spot을 누르면 onzone 상세 정보로 이동합니다."/>
+                                <headerToolbar>
+                                    <Toolbar>
+                                        <Title text="Search toolbar" />
+                                        <ToolbarSpacer />
+                                        <ComboBox  id="idBranchCombo"
+                                            showSecondaryValues="true"
+                                            items="{
+                                                path: 'ozModel>/Spots/items',
+                                                templateShareable: true}">
+                                            <core:ListItem key="{ozModel>OZNAME}"
+                                                text="{ozModel>OZNAME}"
+                                                additionalText="{ozModel>BRANCH}" />
+                                        </ComboBox>
+                                        <Button id="btnSearch" icon="sap-icon://search"
+                                            press="onSearch"
+                                            text="Search" />
+                                        <Button id="btnLegend" icon="sap-icon://legend" press="onPressLegend"
+							                tooltip="Hide legend" />    
+                                        <Button icon="sap-icon://move"
+                                            press="onCenter"
+                                            text="Go Center" />
+                                    </Toolbar>
+                                </headerToolbar>                               
+                            </Panel>
+                        </l:fixContent>
+                        <l:flexContent>
+                            <vk:MapContainer id="mcont" autoAdjustHeight="true"
+                                showSelection="false" showSettings="false"
+                                showRectangularZoom="false" showHome="false" >
+                                <vk:content>
+                                    <vk:ContainerContent>
+                                        <vk:content>
+                                            <vbm:GeoMap id="map"                                                
+                                                xmlns:vbm="sap.ui.vbm"
+                                                width="100%" height="100%"
+                                                enableAnimation="false"
+                                                mapConfiguration="{mapConfig>/}"
+                                                initialPosition="126.9779692;37.566535;0"
+                                                initialZoom="12">
+                                                <vbm:vos>
+                                                    <vbm:Spots click="onClickItem"
+                                                        posChangeable="true"
+                                                        scaleChangeable="true"
+                                                        contextMenu="onContextMenuItem"
+                                                        items="{ozModel>/Spots/items}">
+                                                        <vbm:items>
+                                                            <vbm:Spot id="Spot"
+                                                                type="Success"
+                                                                text="{ozModel>OZNAME}"
+                                                                tooltip="{ozModel>BRANCH} {ozModel>OZ}"
+                                                                selectColor="RHLSA(0;1.3;5.0;1.9)"
+                                                                position="{ozModel>pos}"
+                                                                click="onClickSpot"
+                                                                contextMenu="onContextMenuSpot"
+                                                                icon="sap-icon://addresses" />
+
+                                                        </vbm:items>
+                                                    </vbm:Spots>
+                                                </vbm:vos>
+                                                <vbm:clusters>
+                                                    <vbm:ClusterDistance click="onClusterClick"
+                                                        tooltip="{ozModel>BRANCH}" distance="256">
+                                                        <vbm:Cluster type="Success"
+                                                            icon="sap-icon://car-rental" />
+
+                                                    </vbm:ClusterDistance>
+                                                    <!-- <vbm:ClusterGrid click="onClusterClick"
+                                                        >
+                                                <vbm:Cluster type="Success" icon="sap-icon://cart"/>
+                                            </vbm:ClusterGrid >  -->
+                                                </vbm:clusters>
+
+                                                <vbm:legend>
+                                                    <vbm:Legend id="legend" caption="Legend"
+                                                        class="sapUiTinyMargin sapUiTinyPadding">
+                                                        <vbm:LegendItem text="지점"
+                                                            image="PinGreen.png" />
+                                                    </vbm:Legend>
+                                                </vbm:legend>
+                                            </vbm:GeoMap>
+                                        </vk:content>
+                                    </vk:ContainerContent>
+                                </vk:content>
+                            </vk:MapContainer>
+                        </l:flexContent>
+                        
+                        
+                    </l:FixFlex>                    
+                </f:content>
+
+                               
+            </f:DynamicPage>
+        </content>
+    </Page>
+</mvc:View>

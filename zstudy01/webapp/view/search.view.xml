@@ -1,0 +1,13 @@
+<mvc:View controllerName="zstudy01.controller.search"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Panel headerText="Search Panel" 
+          class="sapUiResponsiveMargin"
+        width="auto">
+        <content >
+        <Label labelFor= "idSearchInput" text="Carrid" class="sapUiSmallMarginEnd"/>
+            <Input id="idSearchInput" placeholder="Enter Carrid" type="Text" 
+                    showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+        </content>
+    </Panel>
+</mvc:View>

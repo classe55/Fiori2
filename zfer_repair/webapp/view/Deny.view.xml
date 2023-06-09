@@ -1,0 +1,104 @@
+<mvc:View controllerName="ER.zferrepair.controller.Deny"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:uxap="sap.uxap">
+	<Page>
+		<uxap:ObjectPageLayout id="ObjectPageLayout"
+			showTitleInHeaderContent="true"
+			alwaysShowContentHeader="false"
+			preserveHeaderStateOnScroll="false"
+			headerContentPinnable="true"
+			isChildPage="true"
+			upperCaseAnchorBar="false">
+			<uxap:headerTitle>
+				<uxap:ObjectPageDynamicHeaderTitle>
+					<uxap:expandedHeading>
+						<Title id="idAppInfo" text="결재자 정보"
+							wrapping="true" />
+					</uxap:expandedHeading>
+
+					<uxap:navigationActions>
+						<!-- <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+							press="handleFullScreen" id="enterFullScreenBtn"
+							tooltip="Enter Full Screen Mode"
+							visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }" /> -->
+						<OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+							press="handleClose" tooltip="Close middle column"
+							visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+					</uxap:navigationActions>
+				</uxap:ObjectPageDynamicHeaderTitle>
+			</uxap:headerTitle>
+			<uxap:headerContent>
+				<HBox>
+                    <FlexBox wrap="Wrap" fitContainer="true" height="100px" width="350px">
+                        <Image id="idLoginImage" src=""
+                            height="100%" width="100%"/>
+                    </FlexBox>
+                    <VBox class="sapUiLargeMarginBegin sapUiTinyMarginEnd sapUiTinyMarginBottom sapUiTinyMarginTop" width="150%">
+                        
+                        <Title text="Employee Information" class="sapUiTinyMarginBottom" />
+                        <Text id="EmpInfo" width="100%"  />
+                        <Text id="idDept" width="100%"  />
+                        <Text id="idName" width="100%" />
+                    </VBox>
+                    <VBox class="sapUiLargeMarginBegin sapUiTinyMarginEnd sapUiTinyMarginBottom sapUiTinyMarginTop " width="150%">
+                        <Title text="Contact Information" class="sapUiTinyMarginBottom" />
+
+                        <HBox class="sapUiTinyMarginBottom">
+                            <core:Icon src="sap-icon://outgoing-call" />
+                            <Text id="idTel" class="sapUiSmallMarginBegin" />
+                        </HBox>
+                        <HBox>
+                            <core:Icon src="sap-icon://email" />
+                            <Text id="idEmail" class="sapUiSmallMarginBegin" />
+                        </HBox>
+                    </VBox>
+                </HBox>
+			</uxap:headerContent>
+			<uxap:sections>
+				<uxap:ObjectPageSection showTitle="false">
+					<uxap:subSections>
+						<uxap:ObjectPageSubSection>
+							<uxap:blocks>
+								<HBox>
+									<f:SimpleForm
+										editable="false"
+										layout="ResponsiveGridLayout"
+										title="결재 정보"
+										singleContainerFullSize="false">
+										<f:content>
+											<core:Title text="요청 상세" />
+											<Label text="요청ID" />
+											<Text id="idReprid"  />											
+											<Label text="점검ID" />
+											<Text id="idInspectid"  />
+											<Label text="결재일자" />
+											<Text id="idAppdate" />
+											<Label text="반려 내용" />
+											<Text id="idReturndesc"/>
+											<Label text="상신 내용" />											
+											<TextArea id="idReprdescArea"  width="100%" enabled="false"/>
+											
+										</f:content>
+									</f:SimpleForm>
+
+								</HBox>
+							</uxap:blocks>
+						</uxap:ObjectPageSubSection>
+					</uxap:subSections>
+				</uxap:ObjectPageSection>
+			</uxap:sections>
+		</uxap:ObjectPageLayout>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer />
+				<Button id="idEditBtn" type="Attention" text="수정" press="onEdit" />
+				<Button type="Accept" text="재상신" press="onRegister" />
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

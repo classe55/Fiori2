@@ -1,0 +1,157 @@
+<mvc:View controllerName="nt.zprojectodatae1203.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:core="sap.ui.core"
+	xmlns:m="sap.m"
+	xmlns:l="sap.ui.layout"
+	height="100%">
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" useIconTabBar="true">
+		<headerTitle>
+			<ObjectPageHeader objectTitle="Section sample">
+				<actions>
+					<ObjectPageHeaderActionButton
+						icon="sap-icon://search"
+						text="Search"
+						hideText="false"
+						press="onSearch"
+						type="Emphasized" />
+				</actions>
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<headerContent>
+			<l:Grid containerQuery="true" defaultSpan="XL2 L4 M6 S12">
+				<m:VBox>
+					<m:Label labelFor="idOrderID" text="OrderID" />
+					<m:Input id="idOrderID"/>
+				</m:VBox>
+				<m:VBox>
+					<m:Label labelFor="idOrderDate" text="Order Date" />
+					<m:DatePicker
+						displayFormat="yyyy-MM-dd"
+						valueFormat="yyyyMMdd"
+						id="idOrderDate" />
+				</m:VBox>
+				<m:VBox>
+					<m:Label />
+					<m:Input />
+				</m:VBox>
+				<m:VBox>
+					<m:Label />
+					<m:Input />
+				</m:VBox>
+				<m:VBox>
+					<m:Label />
+					<m:Input />
+				</m:VBox>
+			</l:Grid>
+		</headerContent>
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="Section 3">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<m:Table id="idOrdersTable"
+								inset="false"
+								items="{/Orders}">
+								<!-- 
+									애초에 불러올 때 filter 걸어서 가져오는 방법.
+									items="{
+										path : '/Products',
+										filters : [{
+											path : 'UnitsOnOrder', 
+											operator : 'NE',
+											value1 : '0'
+										},{
+											path : 'ProductName', 
+											operator : 'Contains',
+											value1 : 'C'
+										}],
+										sorter : [{
+											path : 'UnitsInStock',
+											descending : true
+										},{
+											path : 'UnitsOnOrder',
+											descending : false
+										}]									
+									}
+								 -->
+
+								<m:headerToolbar>
+									<m:OverflowToolbar>
+										<m:content>
+											<m:Title text="Orders" level="H2" />
+											<m:ToolbarSpacer />
+										</m:content>
+									</m:OverflowToolbar>
+								</m:headerToolbar>
+								<m:columns>
+									<m:Column>
+										<m:Text text="OrderID" />
+									</m:Column>
+									<m:Column>
+										<m:Text text="CustomerID" />
+									</m:Column>
+									<m:Column>
+										<m:Text text="Order Date" />
+									</m:Column>
+									<m:Column>
+										<m:Text text="Required Date" />
+									</m:Column>
+									<m:Column>
+										<m:Text text="Shipped Date" />
+									</m:Column>
+									<m:Column>
+										<m:Text text="Icon" />
+									</m:Column>
+									<m:Column>
+										<m:Text text="Visible" />
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem vAlign="Middle">
+										<m:cells>
+											<!-- <m:ObjectIdentifier title="{OrderID}" /> -->
+											<m:Text text="{OrderID}" />
+											<m:Text text="{CustomerID}" />
+											<m:Text
+												text="{
+													path : 'OrderDate',
+													formatter : '.formatter.dateTime'}" />
+											<m:Text
+												text="{
+													path : 'RequiredDate',
+													formatter : '.formatter.dateTime'}" />
+											
+											<m:Text
+												text="{
+													path : 'ShippedDate',
+													formatter : '.formatter.dateTime'}" />
+
+											<core:Icon
+												src="sap-icon://circle-task-2" 
+												color= "{= (${UnitsInStock} + ${UnitsOnOrder}) &lt; 50 ? '#ABE2AB' : '#FF8888'}" />
+
+											<m:Text text="{= ${UnitsInStock} +
+															${UnitsOnOrder}}"
+													visible="{= (${UnitsInStock} + ${UnitsOnOrder}) &lt; 30 ? false : true}" />
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection>
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false" title="Section 4">
+						<blocks>
+							<m:Text text="test" />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

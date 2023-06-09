@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:core="sap.ui.core">
+    <Dialog id="Dialog" title="Customer " beforeOpen="onBeforeOpen"
+            draggable="true" resizable="true">
+        <content>
+            <t:Table
+                rows="{/Customers}"
+                selectionMode="Single"
+                visibleRowCount="7"
+                paste="onPaste"
+                ariaLabelledBy="title"
+                rowSelectionChange="onClicked">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title" text="Customer Table" />
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column>
+                        <Label text="Cusotmer ID" />
+                        <t:template>
+                            <Text text="{CustomerID}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="Company Name" />
+                        <t:template>
+                            <Text text="{CompanyName}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+            </content>
+            <endButton>
+                <Button text="close" press="onClose" type="Emphasized" />
+            </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,101 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt">
+    <Dialog id="repair" title="수리 이력 조회" resizable="true" draggable="true">
+        <content>
+            <VBox>            
+                <t:Table id="repairTable" 
+                    rows="{path : '/car_repSet'}"> 
+                    <t:extension>
+                        <OverflowToolbar>
+                            <content>                        
+                                <ToolbarSpacer />
+                                <OverflowToolbarButton tooltip="Sort"
+                                    press="handleSortButtonPressed"
+                                    text="Sort"
+                                    icon="sap-icon://sort" />
+                                <!-- <OverflowToolbarButton
+                                    tooltip="Filter"
+                                    icon="sap-icon://filter"
+                                    press="handleFilterButtonPressed" />     -->
+                            </content>
+                        </OverflowToolbar> 
+                    </t:extension>                                                              
+                    <t:columns>
+                        <t:Column hAlign="Center" >
+                            <Label text="수리ID" />
+                            <t:template>
+							    <Text text="{Repairid}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column  hAlign="Center" >
+                            <Label text="차량ID" />
+                            <t:template>
+							    <Text text="{Carid}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="Homeoz" />
+                            <t:template>
+							     <Text text="{Homeoz}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="수리유형" />
+                            <t:template>
+							     <Text text="{RepTxt}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"   >
+                            <Label text="수리일자" />
+                            <t:template>
+							       <Text text="{path : 'Repdate', formatter : '.formatter.dateTime'}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="수리내용" />
+                            <t:template>
+							     <Text text="{Repdesc}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="금액" />
+                            <t:template>
+							     <Text text="{Amount}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="통화" />
+                            <t:template>
+							     <Text text="{Curkey}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="배터리 교체" />
+                            <t:template>
+							     <Text text="{Bchange}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="폐차 여부" />
+                            <t:template>
+							     <Text text="{Junkcar}" />
+						    </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table>                
+            </VBox>
+
+
+
+        </content>
+
+        <endButton>
+            <!-- <Button text="close" press="onClose" type="Emphasized" /> -->
+            <Button text="close" press="closeDialog" type="Emphasized" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

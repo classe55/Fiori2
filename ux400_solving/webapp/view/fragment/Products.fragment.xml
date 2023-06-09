@@ -1,0 +1,93 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table">
+    <Dialog title ="product table" id="productDialog">
+        <content>
+            <t:Table
+                id="idProductTable"
+                rows= "{/Products}" 
+                class ="sapUiLargeMargin"  > 
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title" text="Products" />
+                        <ToolbarSpacer />
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column>
+                        <Label text="Product ID" />
+                        <t:template>
+                            <Text text="{ProductID}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="ProductName" />
+                        <t:template>
+                            <Text text="{ProductName}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="CategoryID" />
+                        <t:template>
+                            <Text text="{CategoryID}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="QuantityPerUnit" />
+                        <t:template>
+                            <Text text="{QuantityPerUnit}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="UnitPrice" />
+                        <t:template>
+                            <Text text="{UnitPrice}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="UnitsInStock" />
+                        <t:template>
+                            <Text text="{UnitsInStock}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="UnitsOnOrder" />
+                        <t:template>
+                            <Text text="{UnitsOnOrder}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="ReorderLevel" />
+                        <t:template>
+                            <Text text="{ReorderLevel}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column hAlign="Center">
+                        <Label text="Discontinued" />
+                        <t:template>
+                            <Text 
+                             text="{
+                                    path : 'Discontinued',
+                                    formatter : '.formatter.transformDiscontinued'                             
+                                }"  />
+                                <!--<Text = "{=${Discontinued} === true ? 'Yes' :'No'}"/> -->
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="Status" />
+                        <t:template>
+                            <core:Icon src= "{= ${UnitPrice} &gt; 15 ?  'sap-icon://thumb-up'  : 'sap-icon://thumb-down'}" 
+                            color="{= ${UnitPrice} &gt; 15 ? 'rgb(27,234,33)' : 'rgb(234,52,27)'}"/>
+                        </t:template>
+                    </t:Column>
+                    
+
+                </t:columns>
+            </t:Table>
+        </content>
+        <endButton>
+            <Button text="close" press="onClose" type="Emphasized"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

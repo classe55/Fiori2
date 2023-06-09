@@ -1,0 +1,141 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt">
+    <Dialog id="rental" title="대여이력" resizable="true" contentWidth="100%" draggable="true">
+        <content>
+            <VBox>            
+                <t:Table id="rentalTable" 
+                    rows="{path : '/car_rentalSet'}"
+                    visibleRowCount="5"> 
+                    <t:extension>
+                        <OverflowToolbar>
+                            <content>                        
+                                <ToolbarSpacer />
+                                <OverflowToolbarButton tooltip="Sort"
+                                    press="handleSortButtonPressed"
+                                    text="Sort"
+                                    icon="sap-icon://sort" />
+                                <OverflowToolbarButton
+                                    tooltip="Filter"
+                                    icon="sap-icon://filter"
+                                    press="handleFilterButtonPressed" />    
+                            </content>
+                        </OverflowToolbar> 
+                    </t:extension>                                                              
+                    <t:columns>
+                        <t:Column hAlign="Center" width="8rem" >
+                            <Label text="예약ID" />
+                            <t:template>
+							    <Text text="{Rentalid}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column  hAlign="Center" width="8rem" >
+                            <Label text="차량ID" />
+                            <t:template>
+							    <Text text="{Carid}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="고객ID" />
+                            <t:template>
+							     <Text text="{Custid}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="고객명" />
+                            <t:template>
+							     <Text text="{Cname}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="예약일자" />
+                            <t:template>
+							     <Text text="{path : 'Bkdate', formatter : '.formatter.dateTime'}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="대여일자" />
+                            <t:template>
+							     <Text text="{path : 'Rndate', formatter : '.formatter.dateTime'}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="반납일자" />
+                            <t:template>
+							     <Text text="{path : 'Rtdate', formatter : '.formatter.dateTime'}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="실반납일자" />
+                            <t:template>
+							     <Text text="{path : 'Fdate', formatter : '.formatter.dateTime'}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="Start zone" />
+                            <t:template>
+							     <Text text="{Staoz}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="Return zone" />
+                            <t:template>
+							     <Text text="{Retoz}" />
+						    </t:template>
+                        </t:Column>
+                        <!-- <t:Column hAlign="Center"  >
+                            <Label text="예약시간" />
+                            <t:template>
+							     <Text text="{Bktime}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="예약시작시각" />
+                            <t:template>
+							     <Text text="{Statime}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="예약종료시각" />
+                            <t:template>
+							     <Text text="{Endtime}" />
+						    </t:template>
+                        </t:Column> -->
+                        <t:Column hAlign="Center"  >
+                            <Label text="대여시작시간" />
+                            <t:template>
+							     <Text text="{Retstatime}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"  >
+                            <Label text="대여종료시간" />
+                            <t:template>
+							     <Text text="{Retendtime}" />
+						    </t:template>
+                        </t:Column>                        
+                        <t:Column hAlign="Center"  >
+                            <Label text="주행거리" />
+                            <t:template>
+							     <Text text="{Drivdist}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column hAlign="Center"   >
+                            <Label text="Drivfee" />
+                            <t:template>
+							       <Text text="{Drivfee}" />
+						    </t:template>
+                        </t:Column>
+                    
+                    </t:columns>
+                </t:Table>                
+            </VBox>
+        </content>
+
+        <endButton>
+            <Button text="close" press="onClose" type="Emphasized" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,31 @@
+<mvc:View controllerName="zmaps.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:commons="sap.ui.commons" xmlns:vbm="sap.ui.vbm" xmlns:l="sap.ui.layout"
+    height="100%">
+    <Page>
+        <content>
+            <vbm:AnalyticMap id="vbi" width="100%" height="100%" initialPosition="37.5566365;126.9374012;0">
+                <vbm:regions>
+                    <vbm:Region code="KR" color="rgb(0,255,0)"/>
+                </vbm:regions>
+                <vbm:vos>
+                    <vbm:Spots>
+                        <vbm:Spot position="37.5566365;126.9374012;0" type="Success" text="test"/>
+                    </vbm:Spots>
+                </vbm:vos>
+            </vbm:AnalyticMap>
+        </content>
+
+        <!-- <vbm:regions>
+                        <vbm:Region code="KR"></vbm:Region>
+                    </vbm:regions>
+                    <vbm:vos>
+                        <vbm:Spots>
+                            <vbm:Spot position="37.5566365;126.9374012;0" type="Success" text="test">
+                            </vbm:Spot>
+                        </vbm:Spots>
+                    </vbm:vos> -->
+
+    </Page>
+
+</mvc:View>

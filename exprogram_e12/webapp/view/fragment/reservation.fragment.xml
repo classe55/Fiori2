@@ -1,0 +1,116 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m" 
+    xmlns:t="sap.ui.table"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data">
+    <Dialog id="Dialog" draggable="true" resizable="true" beforeOpen="onBeforeOpen">
+            <HBox>                            
+                <t:Table 
+                    rows="{RevModel>/}"                
+                    visibleRowCount="6"
+                    paste="onPaste"                    
+                    rowSelectionChange="onClicked">
+                    <t:columns>
+                        <t:Column >
+                            <Label text="Carrid" />
+                            <t:template>
+                                <Text text="{RevModel>Carrid}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column>
+                            <Label text="Connid" />
+                            <t:template>
+                                <Text text="{RevModel>Connid}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column>
+                            <Label text="Seatsmax" />
+                            <t:template>
+                                <Text text="{RevModel>Seatsmax}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column>
+                            <Label text="Seatsocc" />
+                            <t:template>
+                                <Text text="{RevModel>Seatsocc}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <!-- <t:Column>
+                            <Label text="Price" />
+                            <t:template>
+                                <Text text="{RevModel>Price}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column>
+                            <Label text="Currecny Code" />
+                            <t:template>
+                                <Text text="{RevModel>/currency}" wrapping="false" />
+                            </t:template>
+                        </t:Column> -->
+                        <t:Column hAlign="End">
+                            <Label text="Price"  />
+                            <t:template>
+                               <ObjectNumber 
+                                    number="{
+						            parts:[{path:'RevModel>Price'},{path:'RevModel>/currency'}],
+						            type: 'sap.ui.model.type.Currency',
+						            formatOptions: {showMeasure: false}
+					                }"
+                                    textDirection="LTR"
+					                unit="{RevModel>/currency}"  />
+                            </t:template>                        
+                        </t:Column>
+                    </t:columns>
+                </t:Table>                           
+                <VBox>
+                <HBox>
+                    <ComboBox
+                        id="idChartType" placeholder="Select Chart Types"
+                        selectedKey="stacked_column">
+                        <items>
+                            <core:Item text="area" key="area" />
+                            <core:Item text="stack_bar" key="stacked_bar" />
+                            <core:Item text="stacked_column" key="stacked_column" />
+                        </items>
+                    </ComboBox>
+                    <Button text="Search" id="idChartSearchBtn" press="onChartSearch"
+                        type="Emphasized" width="100%" />
+                </HBox>
+                    <viz:Popover id="idViewPopover"/>
+                    <viz:VizFrame 
+                        id = "Chart"
+                        vizType='stacked_column' uiConfig="{applicationSet:'fiori'}"
+                        vizProperties="{
+                            'title' : { 'visible' : true , text : '예약 현황'},
+                            'legendGroup':{layout:{position: 'left'}},
+                            'plotArea': {                                
+                                drawingEffect: 'glossy',
+                                dataLabel: { visible: true, type:'value'}
+                                }
+                        }">
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset data="{RevModel>/}">
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition name="항공편 번호" value="{Connid}" />                                    
+                                </viz.data:dimensions>
+
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition name="총 좌석" value="{Seatsmax}" />
+                                    <viz.data:MeasureDefinition name="예약 좌석" value="{Seatsocc}" />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <viz.feeds:FeedItem id="idMeasure" uid="valueAxis" type="Measure" values="총 좌석,예약 좌석" />
+                            <viz.feeds:FeedItem id="idDimension" uid="categoryAxis" type="Dimension" values="항공편 번호" />                        
+                        </viz:feeds>
+                    </viz:VizFrame>                          
+                </VBox>                
+           </HBox>                            
+        <endButton>
+            <Button text="close" press="onClose" type="Emphasized"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

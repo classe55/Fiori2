@@ -1,0 +1,18 @@
+<mvc:View controllerName="zprojectodatae1204.controller.Detail"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	height="100%">
+	<Page>
+
+			<Input value='{detail>/data/CustomerID}' description="CustomerID" />
+			<Input value='{detail>/data/Address}' description="Address" />
+			<Input value='{detail>/data/City}' description="City" />
+			<Input value='{detail>/data/CompanyName}' description="CompanyName" />
+			<Input value='{detail>/data/ContactName}' description="ContactName" />
+			<Input value='{detail>/data/ContactTitle}' description="ContactTitle" />
+			<Input value='{detail>/data/Country}' description="Country" />
+	</Page>
+</mvc:View>

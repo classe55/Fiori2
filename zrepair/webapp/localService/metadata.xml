@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGER_REPAIR_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Inspection" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Inspectid"/>
+                </Key>
+                <Property Name="Inspectid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="점검ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Carid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="차량ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Employeeid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="정비팀 직원ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Repairtype" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="수리 유형" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Insdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="점검 일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Insdesc" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="점검 내용" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Delflag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Delete Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="RepairRequest" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Reprid"/>
+                </Key>
+                <Property Name="Reprid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="수리요청ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Employeeid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="정비팀 직원ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Partnerid" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="협력사ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Reprdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="요청 일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Delflag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Delete Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="RepairRequestItem" Relationship="ZGER_REPAIR_SRV.Request_asso" FromRole="FromRole_Request_asso" ToRole="ToRole_Request_asso"/>
+            </EntityType>
+            <EntityType Name="RepairRequestItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Reprid"/>
+                    <PropertyRef Name="Reprnum"/>
+                </Key>
+                <Property Name="Reprid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="수리요청ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Reprnum" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="순번" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Inspectid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="점검ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Reprdesc" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="요청 내용" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Delflagi" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Delete Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="RepairRequest" Relationship="ZGER_REPAIR_SRV.Request_asso" FromRole="ToRole_Request_asso" ToRole="FromRole_Request_asso"/>
+            </EntityType>
+            <EntityType Name="Repair_History" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Repairid"/>
+                </Key>
+                <Property Name="Repairid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="수리ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Repairtype" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="수리 유형" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Repdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="수리 일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Repdesc" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="수리 내용" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Amount" Type="Edm.Decimal" Nullable="false" Precision="11" Scale="3" sap:unicode="false" sap:unit="Curkey" sap:label="수리 금액" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Curkey" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="통화" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Bchange" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="배터리 교체 여부" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Junkcar" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="폐차 여부" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Staflag" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="전표상태구분" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bflag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="상태 플래그" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Material" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Matid"/>
+                </Key>
+                <Property Name="Matid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="자재ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Spras" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Language" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="자재명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Spec" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="제원" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matdesc" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="비고" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Delflag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Delete Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CAR_Info" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Carid"/>
+                </Key>
+                <Property Name="Carid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="차량ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ctyid" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="차종ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ctyname" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="모델명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Branch" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="지점 코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Branchname" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="지점명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="Request_asso" sap:content-version="1">
+                <End Type="ZGER_REPAIR_SRV.RepairRequest" Multiplicity="1" Role="FromRole_Request_asso"/>
+                <End Type="ZGER_REPAIR_SRV.RepairRequestItem" Multiplicity="*" Role="ToRole_Request_asso"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Request_asso">
+                        <PropertyRef Name="Reprid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Request_asso">
+                        <PropertyRef Name="Reprid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZGER_REPAIR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="InspectionSet" EntityType="ZGER_REPAIR_SRV.Inspection" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="RepairRequestSet" EntityType="ZGER_REPAIR_SRV.RepairRequest" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="RepairRequestItemSet" EntityType="ZGER_REPAIR_SRV.RepairRequestItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Repair_HistorySet" EntityType="ZGER_REPAIR_SRV.Repair_History" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialSet" EntityType="ZGER_REPAIR_SRV.Material" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CAR_InfoSet" EntityType="ZGER_REPAIR_SRV.CAR_Info" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="Repair_head_items" Association="ZGER_REPAIR_SRV.Request_asso" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="RepairRequestSet" Role="FromRole_Request_asso"/>
+                    <End EntitySet="RepairRequestItemSet" Role="ToRole_Request_asso"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZGER_REPAIR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZGER_REPAIR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

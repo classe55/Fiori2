@@ -1,0 +1,105 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:tnt="sap.tnt">
+    <Dialog id="Possible" title="보유 차량">
+        <content>
+            <VBox>            
+                <t:Table id="PossibleCarTable" 
+                    rows="{
+                        path : '/my_carSet',
+                        filters : [{
+                            path : 'Castatus',
+                            operator  : 'EQ',
+                            value1 : '2'}]
+                            }"> 
+                    <t:extension>
+                        <OverflowToolbar>
+                            <content>
+                                <ToolbarSpacer />
+                                <OverflowToolbarButton tooltip="Sort"
+                                    press="handleSortButtonPressed"
+                                    text="Sort"
+                                    icon="sap-icon://sort" />
+                                <OverflowToolbarButton
+                                    tooltip="Filter"
+                                    icon="sap-icon://filter"
+                                    press="handleFilterButtonPressed" />    
+                            </content>
+                        </OverflowToolbar> 
+                    </t:extension>                                                              
+                    <t:columns>
+                        <t:Column id="castatus">
+                            <Label text="차량상태" />
+                            <t:template>
+							    <tnt:InfoLabel text="{StatusTxt}"  colorScheme="{path : 'StatusTxt',formatter : '.formatter.stat'}"/>
+						    </t:template>
+                        </t:Column>
+                        <t:Column  sortProperty="Status">
+                            <Label text="차량ID" />
+                            <t:template>
+							    <Text text="{Carid}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column  >
+                            <Label text="차종" />
+                            <t:template>
+							     <Text text="{Ctyname}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column  >
+                            <Label text="색상" />
+                            <t:template>
+							     <Text text="{Colname}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column  >
+                            <Label text="HomeZone" />
+                            <t:template>
+							     <Text text="{Homeoz}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column  >
+                            <Label text="NowZone" />
+                            <t:template>
+							     <Text text="{Nowoz}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column  >
+                            <Label text="번호판" />
+                            <t:template>
+							     <Text text="{Canum}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column  >
+                            <Label text="누적거리" />
+                            <t:template>
+							     <Text text="{Accdist}KM" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column  >
+                            <Label text="충전횟수" />
+                            <t:template>
+							     <Text text="{Bcharge}" />
+						    </t:template>
+                        </t:Column>
+                        <t:Column  >
+                            <Label text="최근정비일자" />
+                            <t:template>
+							     <Text text="{path : 'Lsdate', formatter : '.formatter.dateTime'}" />
+						    </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table>                
+            </VBox>
+
+
+
+        </content>
+
+        <endButton>
+            <Button text="close" press="onClose" type="Emphasized" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,155 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "ER.zferrepair",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.9.4",
+      "toolsId": "6c0eef8e-125d-4043-b24f-01be7bbed7a2"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZGER_REPAIR_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.114.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ER.zferrepair.i18n.i18n"
+        }
+      },      
+      "fcl": {
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "ER.zferrepair.view",
+        "controlAggregation": "pages",
+        "controlId": "fcl",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteMain",
+          "pattern": ":?query:",
+          "target": [
+            "TargetMain"
+          ]
+        },{
+          "name": "RouteSelf",
+          "pattern": "self/:layout:/{inspectid}/{carid}",
+          "target": [
+            "TargetMain","TargetSelf"
+          ]
+        },
+        {
+          "name": "RouteDeny",
+          "pattern": "Deny/:layout:/{Reprid}/{Approvalid}",
+          "target": [
+            "TargetMain","TargetDeny"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetMain": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": true,
+          "controlAggregation": "beginColumnPages",
+          "viewId": "Main",
+          "viewName": "Main"
+        },
+        "TargetSelf": {
+          "viewType": "XML",
+          "transition": "slide",
+          "controlAggregation": "midColumnPages",
+          "clearControlAggregation": true,          
+          "viewId": "Self",
+          "viewName": "Self"
+        },
+        "TargetDeny": {
+          "viewType": "XML",
+          "transition": "slide",
+          "controlAggregation": "midColumnPages",
+          "clearControlAggregation": true,          
+          "viewId": "Deny",
+          "viewName": "Deny"
+        }
+      }
+      
+    },
+    "rootView": {
+      "viewName": "ER.zferrepair.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}

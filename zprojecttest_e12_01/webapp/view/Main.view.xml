@@ -1,0 +1,41 @@
+<mvc:View controllerName="zprojectteste1201.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <!-- xmlns:l="sap.ui.layout"
+    xmlns:core ="sap.ui.core"> -->
+    <Page id = "page" title="{i18n>title}">
+        <content>
+        
+            <!--label 실습-->
+            <Label labelFor= "idCustomer" text="Customer"/>
+            <Input id="idCustomer" value = "3" required="true"/>
+            <Button text="click" press="onClick"/>
+
+            <!-- <VBox>
+                <Input id="idInput3"/>
+                <CheckBox id="idCheckbox" />
+                <RadioButtonGroup>
+                    <RadioButton id="idRadio1" text="Radio 1"/>
+                    <RadioButton id="idRadio2" text="Radio 2"/>
+                    <RadioButton id="idRadio3" text="Radio 3"/>
+                </RadioButtonGroup>
+                <DatePicker />
+                <DateRangeSelection /> 
+            </VBox> -->
+
+        </content>
+    </Page>
+    <!-- <l:VerticalLayout class ="sapUiContentPadding">
+        <Input id="idInput1" />
+        <Select width="100%"
+                id="idSelect">
+                <core:Item  key="plus" text="+"/>
+                <core:Item  key="minus" text="-"/>
+                <core:Item  key="multiply" text="*"/>
+                <core:Item  key="divide" text="/"/>
+        </Select>
+        <Input id="idInput2" />
+        <Button width="100%" text="Calc" type="Emphasized" press="onBtnPress"/>
+    </l:VerticalLayout> -->
+  
+</mvc:View>

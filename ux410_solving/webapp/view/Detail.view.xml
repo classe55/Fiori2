@@ -1,0 +1,38 @@
+<mvc:View controllerName="sap.btp.ux410solving.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m" xmlns:f="sap.ui.layout.form">
+    <ObjectPageLayout id="ObjectPageLayout"
+        showEditHeaderButton="true"
+        upperCaseAnchorBar="false">
+        <headerTitle>
+            <ObjectPageHeader objectTitle="Orders : {OrderID}"
+                objectSubtitle="Order Detail view" />
+        </headerTitle>
+
+        <sections>
+            <ObjectPageSection>
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <f:SimpleForm id="SimpleFormChange354">
+                                <m:Label labelFor="idOrderID" text="OrderID"/>
+                                <m:Text id="idOrderID" text="{OrderID}"/>
+                                <m:Label labelFor="idProductid" text="Productid"/>
+                                <m:Text id="idProductid" text="{ProductID}"/>
+                                <m:Label labelFor="idUnitPrice" text="UnitPrice"/>
+                                <m:Text id="idUnitPrice" text="{UnitPrice}"/>
+                                <m:Label labelFor="idQuantity" text="Quantity"/>
+                                <m:Text id="idQuantity" text="{Quantity}"/>
+                                <m:Label labelFor="idDiscount" text="Disocount"/>
+                                <m:Text id="idDiscount" text="{Discount}"/>
+                            </f:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+        </sections>
+
+    </ObjectPageLayout>
+</mvc:View>

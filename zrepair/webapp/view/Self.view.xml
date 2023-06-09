@@ -1,0 +1,123 @@
+<mvc:View controllerName="zrepair.controller.Self"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:uxap="sap.uxap">
+<Page >	
+	<uxap:ObjectPageLayout>
+		<uxap:sections>
+			<uxap:ObjectPageSection titleUppercase="false">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="자체수리 상세" titleUppercase="false">
+						<uxap:blocks>
+							<VBox class="sapUiSmallMargin">
+								<f:SimpleForm
+									editable="false"
+									layout="ResponsiveGridLayout"
+									title="점검 및 차량 정보"
+									labelSpanXL="4"
+									labelSpanL="3"
+									labelSpanM="4"
+									labelSpanS="12"
+									adjustLabelSpan="false"
+									emptySpanXL="0"
+									emptySpanL="4"
+									emptySpanM="0"
+									emptySpanS="0"
+									columnsM="2"
+									columnsL="2"
+									columnsXL="2"
+									singleContainerFullSize="false">
+									<f:content>
+										<core:Title text="점검 정보" />
+										<Label text="점검ID" />
+										<Text id="idInspectid" text="{Inspectid}" />
+										<Label text="담당자ID" />
+										<Text id="idEmployeeid" text="{Employeeid}" />
+										<Label text="점검 내용" />
+										<Text id="idInsdesc" text="{Insdesc}" />
+										<core:Title text="차량 정보" />
+										<Label labelFor="CaridText" text="차량ID" />
+										<Text id="idCaridText" text="{CarModel>/Carid}" />
+										<Label labelFor="Cty" text="차종" />
+										<Text id="idCtyText" text="{CarModel>/Cty}" />
+										<Label labelFor="CtynameText" text="차종명" />
+										<Text id="idCtynameText" text="{CarModel>/Ctyname}" />
+										<Label labelFor="BranchText" text="지점" />
+										<Text id="idBranchText" text="{CarModel>/Branch}" />
+										<Label labelFor="BranchnameText" text="지점명" />
+										<Text id="idBranchnameText" text="{CarModel>/Branchname}" />
+									</f:content>
+								</f:SimpleForm>
+								<VBox class="sapUiSmallMedinm">
+										<t:Table class="sapUiSmallMargin" id="idMatTable"
+										rows="{
+											path : '/Material_InfoSet'}"
+										selectionMode="Single"
+										selectionBehavior="RowOnly"
+										cellClick="onCellClick">
+											<t:extension>
+												<OverflowToolbar style="Clear">
+													<Title id="title" text="Materials" />
+													<ToolbarSpacer />											
+												</OverflowToolbar>
+											</t:extension>
+											<t:columns>
+												<t:Column>
+													<t:label>
+														<Label text="자재ID" />
+													</t:label>
+													<t:template>
+														<Text text="{Matid}" />
+													</t:template>
+												</t:Column>
+												<t:Column>
+													<t:label>
+														<Label text="자재명" />
+													</t:label>
+													<t:template>
+														<Text text="{Matname}" />
+													</t:template>
+												</t:Column>
+												<t:Column>
+													<t:label>
+														<Label text="제원" />
+													</t:label>
+													<t:template>
+														<Text text="{Spec}" />
+													</t:template>
+												</t:Column>
+												<t:Column>
+													<t:label>
+														<Label text="차종" />
+													</t:label>
+													<t:template>
+														<Text text="{Matdesc}" />
+													</t:template>
+												</t:Column>
+											</t:columns>
+										</t:Table>
+									<HBox justifyContent="End" alignItems="Center">
+										<Text id="idSelectMatText" text="" textAlign="End"/>
+										<Input id="idMatCnt" placeholder="Input Number"
+											type="Number" />
+									</HBox>
+								</VBox>
+							</VBox>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+	</uxap:ObjectPageLayout>
+		<footer>		
+			<OverflowToolbar>
+				<ToolbarSpacer />
+				<Button type="Accept" text="등록" press="onRegister"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>	
+</mvc:View>

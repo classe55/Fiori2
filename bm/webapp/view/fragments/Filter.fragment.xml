@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+        id="Filter"
+		confirm="handleFilterDialogConfirm">
+		<filterItems>
+			<ViewSettingsFilterItem
+				text="차량상태"
+				key="StatusTxt"
+				multiSelect="false">
+				<items>
+					<ViewSettingsItem text="대여가능" key="1" selected="true"/>
+					<ViewSettingsItem text="대여중" key="2" />
+					<ViewSettingsItem text="점검필요" key="3" />
+                    <ViewSettingsItem text="수리필요" key="4" />
+                    <ViewSettingsItem text="수리중" key="5" />
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

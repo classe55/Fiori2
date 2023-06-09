@@ -1,0 +1,22 @@
+<vbm:GeoMap id="map"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:vbm="sap.ui.vbm"
+	xmlns="sap.m"
+	width="100%"
+	height="100%"
+	enableAnimation="false"
+	mapConfiguration="{mapConfig>/}"
+    initialPosition="126.9779692;37.566535;0"
+	initialZoom="13">
+    <!-- <vbm:vos>
+        <vbm:Spots click="onClickItem" posChangeable="true" scaleChangeable="true"
+            contextMenu="onContextMenuItem" items="{ozModel>/Spots/items}">
+            <vbm:items>
+                <vbm:Spot id="Spot" type="Success"  text="{ozModel>OZNAME}"
+                    selectColor="RHLSA(0;1.3;5.0;1.9)" position="{ozModel>pos}" click="onClickSpot"
+                    contextMenu="onContextMenuSpot">
+                </vbm:Spot>
+            </vbm:items>
+        </vbm:Spots>
+    </vbm:vos> -->
+</vbm:GeoMap>

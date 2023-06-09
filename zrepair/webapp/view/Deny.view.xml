@@ -1,0 +1,115 @@
+<mvc:View controllerName="zrepair.controller.Deny"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:uxap="sap.uxap">
+	<Page>
+		<uxap:ObjectPageLayout id="ObjectPageLayout"
+			showTitleInHeaderContent="true"
+			alwaysShowContentHeader="false"
+			preserveHeaderStateOnScroll="false"
+			headerContentPinnable="true"
+			isChildPage="true"
+			upperCaseAnchorBar="false">
+			<uxap:headerTitle>
+				<uxap:ObjectPageDynamicHeaderTitle>
+					<uxap:expandedHeading>
+						<Title id="idAppInfo" text="{/Repair_DenySet/Approvalid} 결재 정보"
+							wrapping="true" />
+					</uxap:expandedHeading>
+
+					<uxap:navigationActions>
+						<OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen"
+							press="handleFullScreen" id="enterFullScreenBtn"
+							tooltip="Enter Full Screen Mode"
+							visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }" />
+						<OverflowToolbarButton type="Transparent" icon="sap-icon://decline"
+							press="handleClose" tooltip="Close middle column"
+							visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+					</uxap:navigationActions>
+				</uxap:ObjectPageDynamicHeaderTitle>
+			</uxap:headerTitle>
+			<uxap:headerContent>
+				<HBox>
+					<FlexBox wrap="Wrap" fitContainer="true">
+						<!-- <Avatar 
+							id="img"
+							class="sapUiMediumMarginEnd sapUiSmallMarginBottom" displaySize="L" /> -->
+						<!-- <Image id="img2" height="70%" width="70%" /> -->
+					</FlexBox>
+					<VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+						<Title id="EmpInfo" text="본사(Br) 정우재(name) 팀장(RANK)"
+							class="sapUiTinyMarginBottom" />
+						<Text width="320px" text="결재는 엄격하게.." />
+					</VBox>
+					<VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+						<Title text="Contact Information" class="sapUiTinyMarginBottom" />
+
+						<HBox class="sapUiTinyMarginBottom">
+							<core:Icon src="sap-icon://outgoing-call" />
+							<Text id="idTel" text="번호 여기에 바인딩" class="sapUiSmallMarginBegin" />
+						</HBox>
+						<HBox>
+							<core:Icon src="sap-icon://email" />
+							<Text id="idEmail" text="이메일 여기에 바인딩" class="sapUiSmallMarginBegin" />
+						</HBox>
+					</VBox>
+				</HBox>
+			</uxap:headerContent>
+			<uxap:sections>
+				<uxap:ObjectPageSection showTitle="false">
+					<uxap:subSections>
+						<uxap:ObjectPageSubSection>
+							<uxap:blocks>
+								<HBox>
+									<f:SimpleForm
+										editable="false"
+										layout="ResponsiveGridLayout"
+										title="결재 정보"
+										singleContainerFullSize="false">
+										<f:content>
+											<core:Title text="요청 상세" />
+											<Label text="요청ID" />
+											<Text id="idReprid"  />											
+											<Label text="점검ID" />
+											<Text id="idInspectid"  />
+											<Label text="결재일자" />
+											<Text id="idAppdate" />
+											<Label text="반려 내용" />
+											<Text id="idReturndesc"/>
+											<Label text="상신 내용" />											
+											<TextArea id="idReprdescArea"  width="100%" enabled="false"/>
+											
+										</f:content>
+									</f:SimpleForm>
+
+								</HBox>
+									<!-- <l:VerticalLayout>
+										<l:content>
+											<Label labelFor="beforeRepr" />
+											<Text id="beforeRepr" text="" />
+											<Label labelFor="DenyText" text="상신 내용을 업데이트해주세요." />
+											<TextArea id="DenyText" valueState="None"
+												liveChange="handleLiveChange"
+												placeholder="상신 내용을 입력하세요." width="100%" />
+											<Text id="liveRepr" text="." />
+										</l:content>
+									</l:VerticalLayout> -->
+							</uxap:blocks>
+						</uxap:ObjectPageSubSection>
+					</uxap:subSections>
+				</uxap:ObjectPageSection>
+			</uxap:sections>
+		</uxap:ObjectPageLayout>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer />
+				<Button id="idEditBtn" type="Attention" text="수정" press="onEdit" />
+				<Button type="Accept" text="재상신" press="onRegister" />
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

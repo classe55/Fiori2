@@ -1,0 +1,47 @@
+<mvc:View xmlns:table="sap.ui.table" controllerName="zrental.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Table
+                items="{
+                        path : 'MainModel>/ProductCollection'
+                    }"
+                mode="SingleSelectMaster"
+                sticky="HeaderToolbar,ColumnHeaders">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Car List" level="H2" />
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="image" />
+                    </Column>
+                    <Column>
+                        <Text text="CTY" />
+                    </Column>
+                    <Column>
+                        <Text text="Branch" />
+                    </Column>
+                    <Column >
+                        <Text text="Color" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Image  id="idCar"  src="{MainModel>path} " width="200px" height="100px"/>
+                            <Text text="{MainModel>CTY}" />
+                            <Text text="{MainModel>Branch}" />
+                            <Text text="{MainModel>Color}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+
+    </Page>
+</mvc:View>

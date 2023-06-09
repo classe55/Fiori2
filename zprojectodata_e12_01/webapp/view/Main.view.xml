@@ -1,0 +1,39 @@
+<mvc:View controllerName="zprojectodatae1201.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:c="sap.ui.core">
+     <Page id="page" title="{i18n>title}">
+        <content>
+            <t:Table
+                rows="{/ProductSet}"
+                selectionMode="MultiToggle"
+                visibleRowCount="7"
+                paste="onPaste"
+                ariaLabelledBy="title">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title" text="Products"/>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column width="11rem">
+                        <Label text="ProductId" />
+                        <t:template>
+                            <Text text="{ProductId}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="11rem">
+                        <Label text="TypeCode" />
+                        <t:template>
+                            <!-- <Text text="{TypeCode}" wrapping="false" /> !-->
+                            <ComboBox value="{TypeCode}" items="{TypeCode}">
+								<c:Item text="{TypeCode}"/>
+							</ComboBox>
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,214 @@
+<mvc:View controllerName="zcarin.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:uxap="sap.uxap">
+    <Page>
+        <uxap:ObjectPageLayout id="ObjectPageLayout"
+            useIconTabBar="true"
+            showTitleInHeaderContent="true"
+            alwaysShowContentHeader="false"
+            preserveHeaderStateOnScroll="false"
+            headerContentPinnable="false"
+            isChildPage="true"
+            upperCaseAnchorBar="false">
+            <uxap:headerTitle>
+                <uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:expandedHeading>
+                        <Title id="idAppInfo" wrapping="true" text="수리 차량 입고" />
+                    </uxap:expandedHeading>
+                </uxap:ObjectPageDynamicHeaderTitle>
+            </uxap:headerTitle>
+            <uxap:headerContent>
+                <HBox>
+                    <FlexBox wrap="Wrap" fitContainer="true">
+                        <!-- <Image id="img2" 
+                            height="70%"/> -->
+                        <core:Icon src="sap-icon://customer" size="100px" class="sapUiMediumMarginEnd"/>
+                        <!-- <Avatar src="/model/TJ.png"
+                            class="sapUiMediumMarginEnd sapUiSmallMarginBottom" displaySize="L" /> -->
+                    </FlexBox>
+                    <VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom" width="150%">
+                        <Title id="EmpInfo" class="sapUiTinyMarginBottom" />
+                        
+                        <Text id="idDept" width="100%"  />
+                        <Text id="idName" width="100%" />
+                    </VBox>
+                    <VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom" width="150%">
+                        <Title text="Contact Information" class="sapUiTinyMarginBottom" />
+
+                        <HBox class="sapUiTinyMarginBottom">
+                            <core:Icon src="sap-icon://outgoing-call" />
+                            <Text id="idTel" class="sapUiSmallMarginBegin" />
+                        </HBox>
+                        <HBox>
+                            <core:Icon src="sap-icon://email" />
+                            <Text id="idEmail" class="sapUiSmallMarginBegin" />
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </uxap:headerContent>
+            <uxap:sections>
+                <uxap:ObjectPageSection showTitle="false">
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection title="업체 수리">
+                            <uxap:blocks>
+                                
+                                    <Table
+                                        id="idReqTable"
+                                        inset="false"
+                                        items="{
+                                    path : '/Rep_CarinSet' }"
+                                        selectionChange="onSelectionChange"
+                                        mode="MultiSelect"
+                                    >
+                                        <headerToolbar>
+                                            <OverflowToolbar>
+                                                <content>
+                                                    <Title text="입고 대기 차량" />
+                                                    <ToolbarSpacer />
+                                                    <OverflowToolbarButton tooltip="Sort"
+                                                        press="onSort"
+                                                        text="Sort"
+                                                        icon="sap-icon://sort" />                                                    
+                                                    <Button icon="sap-icon://refresh"
+                                                        press="onRefresh" tooltip="새로고침" />
+                                                </content>
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column>
+                                                <Text text="수리ID" />
+                                            </Column>
+                                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                                <Text text="차량ID" />
+                                            </Column>
+                                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                                <Text text="차량상태" />
+                                            </Column>
+                                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                                <Text text="담당자ID" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="수리금액" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="통화" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="배터리 교체" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="폐차 여부" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="수리 내용" />
+                                            </Column>
+                                        </columns>
+
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text text="{Inspectid}" />
+                                                    <Text text="{Carid}" />
+                                                    <Text text="입고 대기" />
+                                                    <Text text="{Employeeid}"/>
+                                                    <Input id="idAmount" />
+                                                    <Text text="{Curkey}" textAlign="Right"/>
+                                                    <CheckBox id="checkB" textAlign="Center" 
+                                                    selected="{= ${Repdesc}.includes('배터리') ? true : false}"
+                                                    enabled="false" 
+                                                    />
+                                                    <CheckBox id="checkJ" textAlign="Center" 
+                                                    selected="{= ${Repdesc}.includes('폐차') ? true : false}"
+                                                    enabled="false"/>
+                                                    <Text text="{Repdesc}"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+            <uxap:sections>
+                <uxap:ObjectPageSection showTitle="false">
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection title="자체 수리">
+                            <uxap:blocks>
+                                    <Table
+                                        id="idSelfTable"
+                                        inset="false"
+                                        items="{
+                                    path : '/Self_CarinSet' }"
+                                        mode="MultiSelect"
+                                        selectionChange="onSelectionChange"
+                                    >
+                                        <headerToolbar>
+                                            <OverflowToolbar>
+                                                <content>
+                                                    <Title text="입고 대기 차량" />
+                                                    <ToolbarSpacer />
+                                                    <OverflowToolbarButton tooltip="Sort"
+                                                        press="onSort"
+                                                        text="Sort"
+                                                        icon="sap-icon://sort" />                                                    
+                                                    <Button icon="sap-icon://refresh"
+                                                        press="onRefresh" tooltip="새로고침" />
+                                                </content>
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column>
+                                                <Text text="수리ID" />
+                                            </Column>
+                                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                                <Text text="차량ID" />
+                                            </Column>
+                                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                                <Text text="차량상태" />
+                                            </Column>
+                                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                                <Text text="담당자ID" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="수리일자" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="수리 내용" />
+                                            </Column>
+                                        </columns>
+
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text text="{Inspectid}" />
+                                                    <Text text="{Carid}" />
+                                                    <Text text="입고 대기" />
+                                                    <Text text="{Employeeid}"/>
+                                                    <Text text="{path : 'Repdate',
+                                                    formatter : '.formatter.dateTime'}"/>
+                                                    <Text text="{Repdesc}"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+        </uxap:ObjectPageLayout>
+        <footer>
+			<OverflowToolbar>
+				<ToolbarSpacer />
+				<Button type="Accept" text="입고" press="onRegister" />
+			</OverflowToolbar>
+		</footer>
+    </Page>
+</mvc:View>

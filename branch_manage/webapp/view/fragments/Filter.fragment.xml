@@ -1,0 +1,37 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+        id="Filter"
+		confirm="handleFilterDialogConfirm">
+		<filterItems>
+			<ViewSettingsFilterItem
+				text="차량상태"
+				key="StatusTxt"
+				multiSelect="false">
+				<items>
+					<ViewSettingsItem text="대여가능" key="1" selected="true"/>
+					<ViewSettingsItem text="대여중" key="2" />
+					<ViewSettingsItem text="점검필요" key="3" />
+                    <ViewSettingsItem text="수리필요" key="4" />
+                    <ViewSettingsItem text="수리중" key="5" />
+				</items>
+			</ViewSettingsFilterItem>
+			<!-- <ViewSettingsFilterItem
+				text="Zone"
+				key="Homeoz"
+				multiSelect="false">
+				<items>
+					<ViewSettingsItem text="SE01" key="SE01" />
+					<ViewSettingsItem text="SE02" key="SE02" />
+					<ViewSettingsItem text="GY01" key="GY01" />
+                    <ViewSettingsItem text="IN01" key="IN01" />
+                    <ViewSettingsItem text="DJ01" key="DJ01" />
+                    <ViewSettingsItem text="DG01" key="DG01" />
+                    <ViewSettingsItem text="BU01" key="BU01" />
+                    <ViewSettingsItem text="JR01" key="JR01" />
+				</items>
+			</ViewSettingsFilterItem> -->
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

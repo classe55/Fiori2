@@ -1,0 +1,158 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "branchmanage",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.9.4",
+      "toolsId": "d20ac74f-d823-45cc-a67f-531fb1ab797d"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZGER_REPAIR_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "mapConfig" :{
+        "type": "JSON",
+        "uri": "./map/config.json"
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.114.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {},
+        "sap.ui.layout": {},
+				"sap.ui.vbm": {},
+				"sap.ui.vk": {}
+      }
+    },
+        "contentDensities": {
+          "compact": true,
+          "cozy": true
+        },
+        "models": {
+          "i18n": {
+            "type": "sap.ui.model.resource.ResourceModel",
+            "settings": {
+              "bundleName": "branchmanage.i18n.i18n"
+            }
+          },
+          "mapConfig": {
+            "dataSource": "mapConfig"
+          },
+          "": {
+            "dataSource": "mainService",
+            "preload": true,
+            "settings": {}
+          }
+        },
+        "resources": {
+          "css": [
+            {
+              "uri": "css/style.css"
+            }
+          ]
+        },
+        "routing": {
+          "config": {
+            "routerClass": "sap.m.routing.Router",
+            "viewType": "XML",
+            "async": true,
+            "viewPath": "branchmanage.view",
+            "controlAggregation": "pages",
+            "controlId": "app",
+            "clearControlAggregation": false
+          },
+          "routes": [
+            {
+              "name": "RouteMain",
+              "pattern": ":?query:",
+              "target": [
+                "TargetMain"
+              ]
+            },
+            {
+              "name": "RouteDetail",
+              "pattern": "detail/{branch}/{oz}",
+              "target": [
+                "TargetDetail"
+              ]
+            }
+          ],
+          "targets": {
+            "TargetMain": {
+              "viewType": "XML",
+              "transition": "slide",
+              "clearControlAggregation": false,
+              "viewId": "Main",
+              "viewName": "Main"
+            },
+            "TargetDetail": {
+              "viewType": "XML",
+              "transition": "slide",
+              "clearControlAggregation": false,
+              "viewId": "Detail",
+              "viewName": "Detail"
+            }
+          }
+        },
+        "rootView": {
+          "viewName": "branchmanage.view.App",
+          "type": "XML",
+          "async": true,
+          "id": "App"
+        },
+        "config": {
+          "sample" : {
+            "stretch": true,
+            "files": [
+              "oz.json"
+            ]
+          },
+          "fullWidth" : true
+        }
+      
+      }
+    }
+    
+
+

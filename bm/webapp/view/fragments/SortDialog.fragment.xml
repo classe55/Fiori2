@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">    
+        <ViewSettingsDialog id="Sort"
+            confirm="handleSortDialogConfirm">
+            <sortItems>
+                <ViewSettingsItem text="차랑샹태" key="StatusTxt" selected="true" />
+                <ViewSettingsItem text="차량ID" key="Carid" />                
+            </sortItems>
+        </ViewSettingsDialog>
+</core:FragmentDefinition>
